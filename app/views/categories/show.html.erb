@@ -1,0 +1,5 @@
+<% @category.posts.each do |post|%>
+<%#= binding.pry %>
+<%= post.content %>
+<%= link_to post.title, post_path(post) %>
+<% end %>
