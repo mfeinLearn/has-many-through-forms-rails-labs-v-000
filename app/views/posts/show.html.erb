@@ -2,11 +2,11 @@
   <%= f.hidden_field :post_id, value: @post.id%>
   <%= f.label "Content" %>
   <%= f.text_area :content %>
-  <%= f.fields_for :users, @comment.build_user do |users_fields| %>
-    <%= users_fields.collection_select :comment, :user, User.all, :id %>
+  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "select user" %>
+
+  <%= f.fields_for :user, User.new do |users_fields| %>
+  <%= users_fields.text_field :username %>
   <% end %>
+
   <%= f.submit %>
 <% end %>
-<%= collection_select(:category, :category, Category.all, :id, :name,
-
-{:prompt => 'Select'})%>
