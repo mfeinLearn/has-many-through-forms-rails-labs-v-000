@@ -1,7 +1,7 @@
 <%= form_for :post do |f| %>
-  <%= f.text_field :title %><br />
-  <%= f.text_field :content %><br />
-  <%= f.fields_for :categories, post.categories.build do |categories_fields| %>
+  title: <%= f.text_field :title %><br />
+  content: <%= f.text_field :content %><br />
+  categories: <%= f.fields_for :categories, post.categories.build do |categories_fields| %>
   <%= categories_fields.text_field :name %>
 <% end %>
   <%= f.submit %>

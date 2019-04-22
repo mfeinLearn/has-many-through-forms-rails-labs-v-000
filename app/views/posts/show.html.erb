@@ -1,3 +1,6 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+
 <%= form_for @comment do |f| %>
   <%= f.hidden_field :post_id, value: @post.id%>
   <%= f.label "Content" %>
@@ -9,4 +12,10 @@
   <% end %>
 
   <%= f.submit %>
+<% end %>
+
+<% @post.comments.each do |comment| %>
+<% if comment.user %>
+  <p><%= comment.user.username %>  says: <%= comment.content %></p>
+  <%end  %>
 <% end %>
