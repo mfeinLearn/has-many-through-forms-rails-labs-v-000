@@ -2,13 +2,14 @@
 <p><%= @post.content %></p>
 
 <%= form_for @comment do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id%>
+  <%= f.hidden_field :post_id, value: @comment.post_id%>
   <%= f.label "Content" %>
   <%= f.text_area :content %>
-  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: "select user" %>
+  <%= f.collection_select :user_id, User.all, :id, :username, include_blank: true %>
 
-  <%= f.fields_for :user, User.new do |users_fields| %>
-  <%= users_fields.text_field :username %>
+  <%= f.fields_for :user, @post.users.build do |user| %>
+  <%= user.label "Username" %>
+  <%= user.text_field :username %>
   <% end %>
 
   <%= f.submit %>
@@ -16,6 +17,6 @@
 
 <% @post.comments.each do |comment| %>
 <% if comment.user %>
-  <p><%= comment.user.username %>  says: <%= comment.content %></p>
+  <div><%= "#{comment.user.username.strip} says: #{comment.content}"%></div>
   <%end  %>
 <% end %>
