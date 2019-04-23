@@ -21,9 +21,11 @@
 <% end %>
 
 <% @post.comments.each do |comment| %>
-<% if comment.user %>
-  <div><%= link_to comment.user.username.strip, user_path(comment.user)%> says:
-  <%= comment.content %></div>
-
+<% if comment.user%>
+  <%= "#{comment.user.username.strip} says: #{comment.content}" %>
 <% end %>
-<% end  %>
+<% end %>
+
+<% @unique_commenters.each do |user|  %>
+  <%= link_to user.username, user_path(user) %>
+<% end %>

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = @post.comments.build
+    @unique_commenters = User.where(id: @post.comments.select('distinct user_id'))
   end
 
   def index
