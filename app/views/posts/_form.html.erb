@@ -1,9 +1,9 @@
 <%= form_for post do |f| %>
   title: <%= f.text_field :title %><br />
   content: <%= f.text_field :content %><br />
-categories:  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, {include_blank: "select a category"} %><br />
+categories:  <%= f.collection_select :category_ids, Category.all, :id, :name, {include_blank: "select a category"} %><br />
 
-<%= f.label "OR create a new category"  %>
+<%#= f.label "OR create a new category"  %>
 <!-- nested forms in rails synonymous with fields_for .   -->
 <!-- you must call fields_for on form builder object  -->
 <!-- we are going to pass in the attribute that we are
@@ -20,5 +20,5 @@ Or, create a new category:
   <%#= f.fields_for :categories, post.categories.build do |categories_fields| %>
   <%#= categories_fields.text_field :name %>
 <%# end %>
-  <%#= f.submit %>
+  <%= f.submit %>
 <% end %>
