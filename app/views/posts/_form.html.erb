@@ -4,8 +4,21 @@
 categories:  <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, {include_blank: "select a category"} %><br />
 
 <%= f.label "OR create a new category"  %>
-  <%= f.fields_for :categories, post.categories.build do |categories_fields| %>
-  <%= categories_fields.text_field :name %>
+<!-- nested forms in rails synonymous with fields_for .   -->
+<!-- you must call fields_for on form builder object  -->
+<!-- we are going to pass in the attribute that we are
+going to be writing as a symbol. so in this case we want to
+write the post catagory  -->
+<!-- -->
+<br>
+Or, create a new category:
+<%= f.fields_for :category do |cat|%>
+<%= cat.label :name %>
+<%= cat.text_field :name %>
 <% end %>
-  <%= f.submit %>
+<!-- -->
+  <%#= f.fields_for :categories, post.categories.build do |categories_fields| %>
+  <%#= categories_fields.text_field :name %>
+<%# end %>
+  <%#= f.submit %>
 <% end %>
