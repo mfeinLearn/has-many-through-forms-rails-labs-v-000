@@ -1,7 +1,7 @@
 <%= form_for post do |f| %>
   title: <%= f.text_field :title %><br />
   content: <%= f.text_field :content %><br />
-categories:  <%= f.collection_select :category_ids, Category.all, :id, :name, {include_blank: "select a category"} %><br />
+categories:  <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "select a category"} %><br />
 
 <%#= f.label "OR create a new category"  %>
 <!-- nested forms in rails synonymous with fields_for .   -->
@@ -12,6 +12,8 @@ write the post catagory  -->
 <!-- -->
 <br>
 Or, create a new category:
+<!-- our fields for is going to need an object as well -->
+<!-- it is going to look for a catagory on the post basically post.catagory -->
 <%= f.fields_for :category do |cat|%>
 <%= cat.label :name %>
 <%= cat.text_field :name %>
