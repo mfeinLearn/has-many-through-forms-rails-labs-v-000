@@ -1,4 +1,7 @@
-# Has Many Through Forms Rails Labs
+# Practice Building Nested Forms
+
+### ~~Has Many Through Forms Rails Labs~~
+
 
 ## Overview
 
